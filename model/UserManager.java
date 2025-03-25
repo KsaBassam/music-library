@@ -2,8 +2,8 @@
  * @author Bassam
  * @author Joshua
  * 
- * Unit tests for UserManager and User classes (LA#2).
- * - Validates authentication and persistence.
+ * Part of the Model for LA#2. This class manages user accounts and persistence.
+ * - Handles authentication and saving user data to a file.
  */
 package model;
 
