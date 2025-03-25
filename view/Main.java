@@ -1,7 +1,8 @@
 /**
  * @author Bassam
  * @author Joshua
-
+Main
+*/
 package view;
 
 import model.UserManager;
