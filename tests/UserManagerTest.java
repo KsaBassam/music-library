@@ -26,7 +26,6 @@ class UserManagerTest {
 
         userManager = new UserManager(dummyStore);
 
-        // Inject temporary file path using reflection (bypassing final field restriction)
         try {
             var field = UserManager.class.getDeclaredField("userDatabase");
             field.setAccessible(true);
