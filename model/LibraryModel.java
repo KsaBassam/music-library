@@ -1,3 +1,11 @@
+/**
+ * @author Bassam
+ * @author Joshua
+ * 
+ * Part of the Model for LA#2. This class tracks song plays, playlists, and library data.
+ * - Maintains recent/frequent plays and automatic playlists.
+ * - Supports sorting songs by title, artist, or rating.
+ */
 package model;
 
 import java.util.ArrayList;
