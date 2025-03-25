@@ -1,3 +1,10 @@
+/**
+ * @author Bassam
+ * @author Joshua
+ * 
+ * Part of the Model for LA#2. Represents a playlist in the music library.
+ * - Maintains songs in order and supports shuffling via the Iterator pattern.
+ */
 package model;
 
 import java.util.ArrayList;
