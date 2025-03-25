@@ -1,118 +1,105 @@
-/**
- * @file: LibraryModelTest.java
- * @authors: Bassam Faiz H Alqaidi, Joshua Puhala
- * @purpose: Test class for LibraryModel.java.
- */
-
 package tests;
 
-import model.LibraryModel;
-import model.Album;
-import model.Song;
-import model.Playlist;
-import store.MusicStore;
+import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import model.Album;
+import model.LibraryModel;
+import model.Song;
+import store.MusicStore;
 
 public class LibraryModelTest {
 
     private LibraryModel library;
     private MusicStore store;
 
-    /**
-     * Setup before each test.
-     */
     @BeforeEach
     public void setUp() {
         store = new MusicStore();
+        
+        // Mocking MusicStore data
+        Album album = new Album("Sons", "The Heavy", "Rock", 2024);
+        Song song1 = new Song("Fire", "The Heavy", "Sons");
+        Song song2 = new Song("The Thief", "The Heavy", "Sons");
+        album.addSong(song1);
+        album.addSong(song2);
+        store.addAlbum(album);
+
+        
         library = new LibraryModel(store);
     }
 
-    /**
-     * Test adding a song from store to library.
-     */
     @Test
     public void testAddSongFromStore() {
-        assertTrue(library.addSongFromStore("Song 1"));
-        assertEquals(1, library.getAllSongs().size());
-        assertEquals("Song 1", library.getAllSongs().get(0).getTitle());
+        assertTrue(library.addSongFromStore("Fire"));
+        assertEquals(1, library.getSongsSortedByTitle().size());
+        assertEquals("Fire", library.getSongsSortedByTitle().get(0).getTitle());
     }
 
-    /**
-     * Test adding an album from store to library.
-     */
     @Test
     public void testAddAlbumFromStore() {
-        assertTrue(library.addAlbumFromStore("Test Album"));
-        assertFalse(library.getAllAlbums().isEmpty());
+        assertTrue(library.addAlbumFromStore("Sons"));
+        assertEquals(1, library.searchAlbumsByTitle("Sons").size());
+        assertEquals("Sons", library.searchAlbumsByTitle("Sons").get(0).getTitle());
     }
 
-    /**
-     * Test searching songs by title.
-     */
     @Test
     public void testSearchSongsByTitle() {
-        library.addAlbumFromStore("Test Album");
-        List<Song> results = library.searchSongsByTitle("Song 1");
+        library.addAlbumFromStore("Sons");
+        List<Song> results = library.searchSongsByTitle("Fire");
         assertEquals(1, results.size());
-        assertEquals("Song 1", results.get(0).getTitle());
+        assertEquals("Fire", results.get(0).getTitle());
     }
 
-    /**
-     * Test searching albums by artist.
-     */
     @Test
     public void testSearchAlbumsByArtist() {
-        library.addAlbumFromStore("Test Album");
-        List<Album> results = library.searchAlbumsByArtist("Test Artist");
+        library.addAlbumFromStore("Sons");
+        List<Album> results = library.searchAlbumsByArtist("The Heavy");
         assertFalse(results.isEmpty());
-        assertEquals("Test Artist", results.get(0).getArtist());
+        assertEquals("The Heavy", results.get(0).getArtist());
     }
 
-    /**
-     * Test creating a playlist.
-     */
     @Test
-    public void testCreatePlaylist() {
-        assertTrue(library.createPlaylist("Chill Vibes"));
-        assertNotNull(library.getPlaylist("Chill Vibes"));
+    public void testGetRecentPlays() {
+        library.addSongFromStore("Fire");
+        Song song = library.getSongsSortedByTitle().get(0);
+        library.playSong(song);
+        List<Song> recentPlays = library.getRecentPlays();
+        assertEquals(1, recentPlays.size());
+        assertEquals(song, recentPlays.get(0));
     }
 
-    /**
-     * Test adding a song to a playlist.
-     */
     @Test
-    public void testAddSongToPlaylist() {
-        library.createPlaylist("Chill Vibes");
-        library.addSongFromStore("Song 1");
-        assertTrue(library.addSongToPlaylist("Chill Vibes", library.findSongInLibrary("Song 1")));
-        assertEquals(1, library.getPlaylist("Chill Vibes").getSongs().size());
+    public void testGetFrequentPlays() {
+        library.addSongFromStore("Fire");
+        library.addSongFromStore("The Thief");
+        
+        Song song1 = library.getSongsSortedByTitle().get(0);
+        Song song2 = library.getSongsSortedByTitle().get(1);
+        
+        library.playSong(song1);
+        library.playSong(song1);
+        library.playSong(song2);
+        
+        List<Song> frequentPlays = library.getFrequentPlays();
+        assertEquals(2, frequentPlays.size());
+        assertEquals(song1, frequentPlays.get(0));
     }
 
-    /**
-     * Test rating a song.
-     */
     @Test
-    public void testRateSong() {
-        library.addSongFromStore("Song 1");
-        Song song = library.findSongInLibrary("Song 1");
-        library.rateSong(song, 5);
-        assertEquals(5, song.getRating());
-        assertTrue(song.isFavorite());
+    public void testRemoveSong() {
+        library.addSongFromStore("Fire");
+        Song song = library.getSongsSortedByTitle().get(0);
+        assertTrue(library.removeSong(song));
+        assertTrue(library.getSongsSortedByTitle().isEmpty());
     }
 
-    /**
-     * Test finding a song in the library.
-     */
     @Test
-    public void testFindSongInLibrary() {
-        library.addSongFromStore("Song 1");
-        Song foundSong = library.findSongInLibrary("Song 1");
-        assertNotNull(foundSong);
-        assertEquals("Song 1", foundSong.getTitle());
+    public void testRemoveAlbum() {
+        library.addAlbumFromStore("Sons");
+        Album album = library.searchAlbumsByTitle("Sons").get(0);
+        assertTrue(library.removeAlbum(album));
+        assertTrue(library.searchAlbumsByTitle("Sons").isEmpty());
     }
 }
