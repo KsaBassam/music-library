@@ -14,7 +14,6 @@ class MusicStoreTest {
     void setUp() {
         musicStore = new MusicStore();
         
-        // Manually adding mock data instead of overriding loadAlbums()
         Album album1 = new Album("Sons", "The Heavy", "Rock", 2020);
         Album album2 = new Album("Test Album", "Test Artist", "Pop", 2019);
         musicStore.addAlbum(album1);
@@ -24,7 +23,7 @@ class MusicStoreTest {
     @Test
     void testGetAlbumsInitiallyEmpty() {
         List<Album> albums = musicStore.getAlbums();
-        assertFalse(albums.isEmpty()); // Now ensures test is meaningful
+        assertFalse(albums.isEmpty());
     }
 
     @Test
