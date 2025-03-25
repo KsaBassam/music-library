@@ -1,3 +1,11 @@
+/**
+ * @author Bassam
+ * @author Joshua
+ * 
+ * AI-GENERATED CODE (with manual adjustments): 
+ * - Handles user input/output for LA#2.
+ * - Implements menus for login, search, and playlists.
+ */
 package view;
 
 import java.util.InputMismatchException;
