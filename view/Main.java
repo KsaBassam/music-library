@@ -1,7 +1,7 @@
 /**
  * @author Bassam
  * @author Joshua
-Main
+Main for runing the program
 */
 package view;
 
