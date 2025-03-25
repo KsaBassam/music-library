@@ -38,7 +38,7 @@ class UserTest {
     void testGenerateSalt() {
         user = new User("john_doe", "securePassword", dummyStore);
 
-        // Check if salt is generated correctly (it's a byte array of size 16)
+        // Check if salt is generated correctly
         assertNotNull(user.getSalt());
         assertEquals(16, user.getSalt().length);
     }
@@ -80,8 +80,6 @@ class UserTest {
 
         // Ensure that the library is correctly initialized
         assertNotNull(user.getLibrary());
-        // Optionally, verify the MusicStore is properly set (if LibraryModel exposes any relevant methods)
-        // assertEquals(dummyStore, user.getLibrary().getStore()); // Uncomment if LibraryModel provides a way to get the store
     }
 
     @Test
@@ -97,8 +95,8 @@ class UserTest {
     void testHashedPasswordLength() {
         user = new User("john_doe", "securePassword", dummyStore);
 
-        // Ensure that the hashed password has the expected length (SHA-256 should be 64 characters in Base64)
-        assertEquals(44, user.getHashedPassword().length());  // Base64 encoding of SHA-256 hash is always 44 chars
+        // Ensure that the hashed password has the expected length
+        assertEquals(44, user.getHashedPassword().length());  
     }
 
     @Test
