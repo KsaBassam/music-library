@@ -30,7 +30,7 @@ public class UserManager {
 			users = (Map<String, User>) ois.readObject();
 			// Reinitialize libraries with the MusicStore
 			for (User user : users.values()) {
-				user.getLibrary().setStore(store); // Requires a setter in LibraryModel
+				user.getLibrary().setStore(store); 
 			}
 		} catch (IOException | ClassNotFoundException e) {
 			System.err.println("Error loading user data. Starting fresh.");
