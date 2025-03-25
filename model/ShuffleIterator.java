@@ -23,7 +23,7 @@ public class ShuffleIterator implements Iterator<Song> {
     @Override
     public Song next() {
         if (!hasNext()) {
-            throw new NoSuchElementException("No more elements in the playlist."); // Correct exception
+            throw new NoSuchElementException("No more elements in the playlist."); 
         }
         return shuffledList.get(index++);
     }
