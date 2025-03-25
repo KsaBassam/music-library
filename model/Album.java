@@ -1,3 +1,10 @@
+/**
+ * @author Bassam
+ * @author Joshua
+ * 
+ * Part of the Model for LA#2. Represents an album in the music library.
+ * - Stores album metadata and its list of songs.
+ */
 package model;
 
 import java.util.ArrayList;
