@@ -1,3 +1,11 @@
+/**
+ * @author Bassam
+ * @author Joshua
+ * 
+ * Simulates the music store database for LA#1/LA#2.
+ * - Loads albums from text files.
+ * - Provides search functionality for songs/albums.
+ */
 package store;
 
 import java.io.BufferedReader;
