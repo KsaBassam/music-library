@@ -1,3 +1,11 @@
+/**
+ * @author Bassam
+ * @author Joshua
+ * 
+ * Part of the Model for LA#2. This class handles user accounts and password security.
+ * - Uses SHA-256 hashing with salt to store passwords securely.
+ * - Manages user-specific libraries.
+ */
 package model;
 
 import java.security.MessageDigest;
