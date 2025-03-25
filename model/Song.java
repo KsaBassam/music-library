@@ -1,3 +1,10 @@
+/**
+ * @author Bassam
+ * @author Joshua
+ * 
+ * Part of the Model for LA#2. Represents a song in the music library.
+ * - Tracks play count, rating, and favorite status.
+ */
 package model;
 
 public class Song {
