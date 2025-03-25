@@ -1,3 +1,11 @@
+/**
+ * @author Bassam
+ * @author Joshua
+ * 
+ * AI-GENERATED CODE (with manual adjustments): 
+ * - Entry point for the application.
+ * - Initializes the MusicStore and LibraryView.
+ */
 package view;
 
 import model.UserManager;
