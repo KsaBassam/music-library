@@ -1,3 +1,10 @@
+/**
+ * @author Bassam
+ * @author Joshua
+ * 
+ * Unit tests for UserManager and User classes (LA#2).
+ * - Validates authentication and persistence.
+ */
 package model;
 
 import java.io.File;
