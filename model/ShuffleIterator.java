@@ -1,3 +1,10 @@
+/**
+ * @author Bassam
+ * @author Joshua
+ * 
+ * Part of the Model for LA#2. Implements the Iterator pattern for shuffled playlists.
+ * - Uses Collections.shuffle() to randomize song order.
+ */
 package model;
 
 import java.util.ArrayList;
